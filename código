@@ -1,0 +1,26 @@
+from tkinter import *
+
+# Criação de variaveis
+inicial = 'Insira uma conta!'
+
+# Config da janela
+screen = Tk()
+screen.title('Calculadora')
+screen.geometry('300x400')
+
+# Divisão da janela em frames pra organizar
+frame_entry = Frame(screen, width=300, height=50, bg='#000')
+frame_entry.pack()
+
+frame_botoes = Frame(screen, width=300, height=200, bg='#543')
+frame_botoes.pack()
+
+# Adicionando widgets de entrada e saida de informações
+label_resultados = Label(frame_botoes, text=inicial, width=260, height=1,
+                         bg='#999', font=('Arial', 13, 'italic bold'), relief=FLAT)
+label_resultados.pack()
+
+entry = Entry(frame_entry,font=('Arial', 14, 'bold'),bd=3, relief=SUNKEN, bg='#fff')
+entry.place(x=0, y=0, width=300, height=50)
+
+screen.mainloop()
