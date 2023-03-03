@@ -1,8 +1,8 @@
 # ~ Primeiro projeto
 
-## Calculadora com interface gráfica!
-#Linguagem: Python
-#Biblioteca usada: Tkinter
+# Calculadora com interface gráfica!
+Linguagem: Python
+Biblioteca usada: Tkinter
 #
 ##About this:
 Utilizei das principais funcionalidades do TKinter como: 
