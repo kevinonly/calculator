@@ -1,2 +1,4 @@
 # calculadora
-Calculadora com interface gráfica em Python;
+Calculadora com interface gráfica!
+Linguagem: Python
+Biblioteca usada: Tkinter
