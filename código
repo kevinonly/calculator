@@ -1,26 +1,55 @@
+# Importação da biblioteca TKinter:
 from tkinter import *
 
-# Criação de variaveis
+# Área das váriaveis:
 inicial = 'Insira uma conta!'
 
-# Config da janela
+
+# Criação de uma classe pra gerenciamento dos botões:
+class Teclas:
+    def botao(self, pai, texto, linha, coluna):
+        cria = Button(master=pai, text=texto, width=6, height=3, bd=4,
+                      font=('Arial', 12, 'bold'))
+        cria.grid(row=linha, column=coluna)
+        return cria
+
+
+# Configuração da janela:
 screen = Tk()
 screen.title('Calculadora')
-screen.geometry('300x400')
+screen.geometry('296x394')
 
-# Divisão da janela em frames pra organizar
-frame_entry = Frame(screen, width=300, height=50, bg='#000')
+# Divisão da janela em frames pra organizar:
+frame_entry = Frame(screen, width=300, height=100, bg='#000')
 frame_entry.pack()
 
-frame_botoes = Frame(screen, width=300, height=200, bg='#543')
-frame_botoes.pack()
+frame_botoes = Frame(screen, width=300, height=300, bg='#543')
+frame_botoes.place(x=0, y=94)
 
-# Adicionando widgets de entrada e saida de informações
-label_resultados = Label(frame_botoes, text=inicial, width=260, height=1,
+# Adicionando widgets de entrada e saida de informações:
+label_resultados = Label(screen, text=inicial, width=30, height=2,
                          bg='#999', font=('Arial', 13, 'italic bold'), relief=FLAT)
-label_resultados.pack()
+label_resultados.place(x=0, y=49)
 
 entry = Entry(frame_entry,font=('Arial', 14, 'bold'),bd=3, relief=SUNKEN, bg='#fff')
-entry.place(x=0, y=0, width=300, height=50)
+entry.place(x=0, y=0, width=296, height=48)
+
+# Criando os botões com a função da classe Teclas:
+btnClear = Teclas().botao(frame_botoes, 'C', 0, 0)
+btnIgual = Teclas().botao(frame_botoes, '=', 0, 2)
+btn0 = Teclas().botao(frame_botoes, '0', 0, 1)
+btn1 = Teclas().botao(frame_botoes, '1', 1, 0)
+btn2 = Teclas().botao(frame_botoes, '2', 1, 1)
+btn3 = Teclas().botao(frame_botoes, '3', 1, 2)
+btn4 = Teclas().botao(frame_botoes, '4', 2, 0)
+btn5 = Teclas().botao(frame_botoes, '5', 2, 1)
+btn6 = Teclas().botao(frame_botoes, '6', 2, 2)
+btn7 = Teclas().botao(frame_botoes, '7', 3, 0)
+btn8 = Teclas().botao(frame_botoes, '8', 3, 1)
+btn9 = Teclas().botao(frame_botoes, '9', 3, 2)
+btnX = Teclas().botao(frame_botoes, 'X', 0, 3)
+btnDiv = Teclas().botao(frame_botoes, '/', 1, 3)
+btnMais = Teclas().botao(frame_botoes, '+', 2, 3)
+btnMenos = Teclas().botao(frame_botoes, '_', 3, 3)
 
 screen.mainloop()
