@@ -7,14 +7,16 @@ screen = Tk()
 screen.title('Calculadora')
 screen.geometry('296x394')
 
-# Área das váriaveis:
+# Criação de váriaveis:
 inicial = StringVar()
 inicial.set('Insira uma conta!')
 var_text = StringVar()
 conta = ''
 
 
-# Função pra exibir número no display
+# Criando as funções dos botões
+
+# Função pra exibir números no display
 def mudar(valor):
     global var_text
     global conta
@@ -22,7 +24,7 @@ def mudar(valor):
     var_text.set(conta)
 
 
-# Função pra realizar o cálculo da conta
+# Função pra resolver e exibir o resultado da conta
 def calcular():
     global conta
     global inicial
@@ -41,21 +43,21 @@ def limpar():
 
 # Criação de uma classe pra gerenciamento dos botões:
 class Teclas:
-    # Métodos pra cada tipo de botão
-    def exibe(self, pai, texto, linha, coluna, value):
-        cria = Button(master=pai, text=texto, width=6, height=3, bd=4,
+    # Métodos da classe
+    def exibe(self, pai, texto, linha, coluna, value, bgd='#fff'):
+        cria = Button(master=pai, text=texto, width=6, height=3, bd=4, bg=bgd,
                       font=('Arial', 12, 'bold'),  command=lambda: mudar(value))
         cria.grid(row=linha, column=coluna)
         return cria
 
     def faz_calculo(self, pai, texto, linha, coluna):
-        r = Button(master=pai, text=texto, width=6, height=3, bd=4,
+        r = Button(master=pai, text=texto, width=6, height=3, bd=4, bg='#d4cfcb',
                    font=('Arial', 12, 'bold'), command=lambda: calcular())
         r.grid(row=linha, column=coluna)
         return r
 
     def limpeza(self, pai, texto, linha, coluna):
-        cria = Button(master=pai, text=texto, width=6, height=3, bd=4,
+        cria = Button(master=pai, text=texto, width=6, height=3, bd=4, bg='#d4cfcb',
                       font=('Arial', 12, 'bold'),  command=lambda: limpar())
         cria.grid(row=linha, column=coluna)
         return cria
@@ -73,10 +75,11 @@ label_resultados = Label(screen, textvariable=inicial, width=30, height=2,
                          bg='#999', font=('Arial', 13, 'italic bold'), relief=FLAT)
 label_resultados.place(x=0, y=49)
 
-entry = Entry(frame_entry, textvariable=var_text, font=('Arial', 14, 'bold'),bd=3, relief=SUNKEN, bg='#fff')
+entry = Entry(frame_entry, textvariable=var_text, font=('Arial', 14, 'bold'),
+              bd=3,relief=SUNKEN, bg='#fff')
 entry.place(x=0, y=0, width=296, height=48)
 
-# Criando os botões com os métodos da classe Teclas():
+# Criando os botões com a função da classe Teclas:
 btnClear = Teclas().limpeza(frame_botoes, 'C', 0, 0)
 btnIgual = Teclas().faz_calculo(frame_botoes, '=', 0, 2)
 btn0 = Teclas().exibe(frame_botoes, '0', 0, 1, '0')
@@ -89,9 +92,15 @@ btn6 = Teclas().exibe(frame_botoes, '6', 2, 2, '6')
 btn7 = Teclas().exibe(frame_botoes, '7', 3, 0, '7')
 btn8 = Teclas().exibe(frame_botoes, '8', 3, 1, '8')
 btn9 = Teclas().exibe(frame_botoes, '9', 3, 2, '9')
-btnX = Teclas().exibe(frame_botoes, 'X', 0, 3, 'x')
-btnDiv = Teclas().exibe(frame_botoes, '/', 1, 3, '/')
-btnMais = Teclas().exibe(frame_botoes, '+', 2, 3, '+')
-btnMenos = Teclas().exibe(frame_botoes, '_', 3, 3, '-')
+btnX = Teclas().exibe(frame_botoes, 'x', 0, 3, '*', '#d97218')
+btnDiv = Teclas().exibe(frame_botoes, '/', 1, 3, '/', '#d97218')
+btnMais = Teclas().exibe(frame_botoes, '+', 2, 3, '+', '#d97218')
+btnMenos = Teclas().exibe(frame_botoes, '_', 3, 3, '-', '#d97218')
 
+# Setando foco pro campo de input com método .bind():
+entry.focus_set()
+# Definindo ação para pressionamento da tecla Enter:
+entry.bind("<Return>", lambda e: calcular())
+
+# Uso do .mainloop() pra manter interface ativa
 screen.mainloop()
