@@ -20,6 +20,8 @@ conta = ''
 def mudar(valor):
     global var_text
     global conta
+    global inicial
+    inicial.set('')
     conta += valor
     var_text.set(conta)
 
@@ -28,10 +30,17 @@ def mudar(valor):
 def calcular():
     global conta
     global inicial
-    result = eval(entry.get())
-    conta = ''
-    inicial.set(f'{entry.get()} = {result}')
-    var_text.set('')
+    try:
+        result = eval(entry.get())
+        conta = ''
+        inicial.set(f'{entry.get()} = {result}')
+        var_text.set('')
+    except SyntaxError:
+        inicial.set('Conta inválida!')
+        var_text.set('')
+    except NameError:
+        inicial.set('Conta inválida!')
+        var_text.set('')
 
 
 # Função pra limpar as váriaveis de conta e texto do display
